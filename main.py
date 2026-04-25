@@ -10,12 +10,10 @@ dotenv.load_dotenv()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: conectar base de datos (se activa en Fase 2)
-    # from database.connection import connect_db, close_db
-    # await connect_db()
+    from database.connection import connect_db, close_db
+    await connect_db()
     yield
-    # Shutdown: cerrar conexion
-    # await close_db()
+    await close_db()
 
 
 app = FastAPI(
