@@ -31,9 +31,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Rutas (se activa en Fase 4):
-# from routes.user_routes import router as user_router
-# app.include_router(user_router, prefix="/api/users", tags=["Users"])
+from routes.user_routes import router as user_router
+
+app.include_router(user_router, prefix="/api/users", tags=["Users"])
 
 
 @app.get("/", tags=["Health"])
