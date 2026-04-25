@@ -37,9 +37,10 @@ async def register_user(
     # 5. Insertar en MongoDB
     result = await users.insert_one(user_doc)
 
-    # 6. Enviar correo en background (se activa en Fase 5)
-    # from helpers.email_helper import send_confirmation_email
-    # background_tasks.add_task(send_confirmation_email, user_data.email, token)
+    # 6. Enviar correo en background
+    from helpers.email_helper import send_confirmation_email
+
+    background_tasks.add_task(send_confirmation_email, user_data.email, token)
 
     # 7. Retornar respuesta
     return UserResponse(
